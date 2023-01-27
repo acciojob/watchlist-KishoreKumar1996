@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/movies")
 public class MovieController {
     @Autowired
     MovieService service;
-    @PostMapping("/add-movie")
+    @PostMapping("/movies/add-movie")
     public ResponseEntity<String> addMovie(@RequestBody() Movie movie){
             return new ResponseEntity<>("Successfully added the movie name", HttpStatus.CREATED);
     }
@@ -57,7 +58,7 @@ public class MovieController {
          String message=service.deleteDirectorByName(director);
         return new ResponseEntity<>(message+"successfully remove director by name",HttpStatus.CREATED);
     }
-    @DeleteMapping("/delete-all-directors")
+    @DeleteMapping("/movies/delete-all-directors")
     public ResponseEntity<String> deleteAllDirectors(){
         String message=service.deleteAllDirectors();
         return new ResponseEntity<>(message, HttpStatus.CREATED);

@@ -29,16 +29,12 @@ public class MovieRepository {
         return "Successfully added the director name";
     }
 
-    public void  addMovieDirectorPair(String movie, String direct){
-      if(directorMap.containsKey(direct) && movieMap.containsKey(movie)){
-             List<String> movieDirect=new ArrayList<>();
-             if(directorMovieMapping.containsKey(direct)) {
-               movieDirect=directorMovieMapping.get(direct);
-                 directorMovieMapping.put(direct,movieDirect);
-             }
-                 movieDirect.add(movie);
-                 directorMovieMapping.put(direct,movieDirect);
-      }
+    public String  addMovieDirectorPair(String movie, String direct){
+        if (!directorMovieMapping.containsKey(direct)) {
+            directorMovieMapping.put(direct, new ArrayList<String>());
+        }
+        directorMovieMapping.get(direct).add(movie);
+        return "success";
     }
 
     public Movie getMovieByName(String name){
@@ -49,10 +45,7 @@ public class MovieRepository {
     }
 
     public List<String> getMoviesByDirectorName(String name){
-        List<String> listOfMovie=new ArrayList<>();
-        if(directorMovieMapping.containsKey(name))
-            listOfMovie= directorMovieMapping.get(name);
-        return listOfMovie;
+        return directorMovieMapping.get(name);
     }
     public List<String> findAllMovies(){
 
