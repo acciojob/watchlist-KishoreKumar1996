@@ -38,12 +38,12 @@ public class MovieService {
         return repo.findAllMovies();
     }
 
-     public void  deleteDirectorByName(String director){
+     public String  deleteDirectorByName(String director){
 
-        repo.deleteDirectorByName(director);
+        return repo.deleteDirectorByName(director);
     }
 
-    public void deleteAllDirectors(){
-        repo.deleteAllDirector();
+    public String deleteAllDirectors(){
+        return repo.deleteAllDirectors();
     }
 }
