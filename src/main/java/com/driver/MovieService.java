@@ -10,40 +10,43 @@ import java.util.List;
 
 @Service
 public class MovieService {
+
     @Autowired
-    MovieRepository repo;
+    private MovieRepository movieRepo;
 
-    public String addMove(Movie movie){
-        return repo.addMovie(movie);
-    }
-    public String addDirector(Director direct) {
-        return repo.addDirector(direct);
+    public String addMovie(Movie movie) {
+        return movieRepo.addMovie(movie);
     }
 
-    public void  addMovieDirectorPair(String movie, String direct){
-        repo.addMovieDirectorPair(movie,direct);
-    }
-    public Movie getMovieByName(String name){
-        return repo.getMovieByName(name);
-    }
-    public Director getMovieByDirector(String dir){
-        return repo.getMovieByDirector(dir) ;
+    public String addDirector(Director director) {
+        return movieRepo.addDirector(director);
     }
 
-    public List<String> getMoviesByDirectorName(String name){
-        return repo.getMoviesByDirectorName(name);
-    }
-    public List<String> findAllMovies(){
-
-        return repo.findAllMovies();
+    public String addMovieDirector(String movieName, String directorName) {
+        return movieRepo.addMovieDirectorPair(movieName, directorName);
     }
 
-     public String  deleteDirectorByName(String director){
-
-        return repo.deleteDirectorByName(director);
+    public Movie getMovieByName(String name) {
+        return movieRepo.getMovieByName(name);
     }
 
-    public String deleteAllDirectors(){
-        return repo.deleteAllDirectors();
+    public Director directorByName(String name) {
+        return movieRepo.getDirectorByName(name);
+    }
+
+    public List<String> getMoviesByDirector(String name) {
+        return movieRepo.getMoviesByDirector(name);
+    }
+
+    public List<String> getAllMovies() {
+        return movieRepo.getallMovies();
+    }
+
+    public String deleteDirectorByName(String name) {
+        return movieRepo.deleteDirectorByName(name);
+    }
+
+    public String deleteAllDirectors() {
+        return movieRepo.deleteAllDirectorandMovies();
     }
 }
